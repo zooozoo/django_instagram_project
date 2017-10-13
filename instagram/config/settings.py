@@ -31,7 +31,8 @@ config_secret_common = json.loads(config_secret_common_str)
 # 3
 SECRET_KEY = config_secret_common["django"]["secret_key"]
 
-DATABASES = config_secret_common["django"]["databases"]
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -53,7 +54,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'django_extensions'
+    'django_extensions',
+
+    'post',
 ]
 
 MIDDLEWARE = [
@@ -88,7 +91,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
+DATABASES = config_secret_common["django"]["databases"]
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
