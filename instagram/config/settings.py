@@ -32,6 +32,7 @@ config_secret_common = json.loads(config_secret_common_str)
 SECRET_KEY = config_secret_common["django"]["secret_key"]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 
 # Quick-start development settings - unsuitable for production
