@@ -1,5 +1,5 @@
 <div>
     {% for post in posts %}
-    <div>{{ post.photo}}</div>
+    <img src="{{ post.photo.url }}" alt="">
     {% endfor %}
 </div>
