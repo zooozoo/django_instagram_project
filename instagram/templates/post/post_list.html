@@ -1,5 +1,10 @@
-<div>
-    {% for post in posts %}
-    <img src="{{ post.photo.url }}" alt="">
-    {% endfor %}
-</div>
+{% extends 'base.html' %}
+{% block content %}
+    <div>
+        {% for post in posts %}
+            <a href="{% url 'post_detail' post_pk=post.pk %}">
+                <img src="{{ post.photo.url }}" alt="">
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

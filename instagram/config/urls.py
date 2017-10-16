@@ -23,7 +23,8 @@ from post import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^post/$', views.post_list, name='post_list'),
-    url(r'^post/create/$', views.post_create, name='post_create')
+    url(r'^post/create/$', views.post_create, name='post_create'),
+    url(r'^post/(?P<post_pk>\d+)/$', views.post_detail, name='post_detail')
 ]
 urlpatterns += static(
     settings.MEDIA_URL,
