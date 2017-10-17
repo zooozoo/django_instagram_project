@@ -1,24 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
-    <div>
+    <div id="post-{{ post.pk }}">
         <a href="#last">Last로 갑시다.</a>
         {% for post in posts %}
             <div>
-            <a href="{% url 'post_detail' post_pk=post.pk %}">
-                <img src="{{ post.photo.url }}" alt="">
-            </a>
+                <a href="{% url 'post_detail' post_pk=post.pk %}">
+                    <img src="{{ post.photo.url }}" alt="">
+                </a>
 
-            <form action="{% url 'comment_create' post_pk=post.pk %}?next=/post/#post-comments-{{ post.pk }}" method="POST">
-                {% csrf_token %}
-                {{ comment_form }}
-                <button>댓글 쓰기</button>
-            </form>
+                <form action="{% url 'comment_create' post_pk=post.pk %}?next=/post/#post-comments-{{ post.pk }}"
+                      method="POST">
+                    {% csrf_token %}
+                    {{ comment_form }}
+                    <button>댓글 쓰기</button>
+                </form>
 
-            <ul id="post-comments-{{ post.pk }}">
-                {% for commnet in post.comments.all %}
-                    <li>{{ commnet.content }}</li>
-                {% endfor %}
-            </ul>
+                <ul id="post-comments-{{ post.pk }}">
+                    {% for commnet in post.comments.all %}
+                        <li>{{ commnet.content }}</li>
+                    {% endfor %}
+                </ul>
             </div>
         {% endfor %}
         <div id="last">Last</div>
