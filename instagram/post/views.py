@@ -62,3 +62,4 @@ def comment_create(request, post_pk):
             if next:
                 return redirect(next)
             return redirect('post_detail', post_pk=post_pk)
+

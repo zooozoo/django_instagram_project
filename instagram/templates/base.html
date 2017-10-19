@@ -1,16 +1,29 @@
 {% load static %}
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Instagram</title>
-    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Instagram</title>
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'css/post.css' %}">
 </head>
 <body>
-{% block content %}
-{% endblock %}
+	<div class="container">
+		<a href="{% url 'post_list' %}"><h1>Instagram</h1></a>
+		<p>
+			<div>{{ user }}</div>
+			{% if user.is_authenticated %}
+				{{ user.username }} 님, 환영합니다!  <a href="{% url 'logout' %}">[로그아웃하기]</a>
+			{% else %}
+                <a href="{% url 'login' %}">로그인해주세요</a>
+			{% endif %}
+		</p>
+		<hr>
+		{% block content %}
+		{% endblock %}
+	</div>
 </body>
 </html>

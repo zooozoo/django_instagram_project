@@ -16,6 +16,11 @@ import os, json
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # instagram_project/
 ROOT_DIR = os.path.dirname(BASE_DIR)
+print('BASE_DIR', BASE_DIR)
+print('ROOT_DIR', ROOT_DIR)
+
+AUTH_USER_MODEL = 'member.User'
+
 # instagram_project/ .config_secret/
 CONFIG_SECRET_DIR = os.path.join(ROOT_DIR, '.config_secret')
 
@@ -35,8 +40,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-STATICFILES_DIR = [
-    STATIC_DIR
+STATICFILES_DIRS = [
+    STATIC_DIR,
 ]
 
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
