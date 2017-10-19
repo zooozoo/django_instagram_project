@@ -12,7 +12,7 @@ def login(request):
         form = LoginForm(request.POST)
         if form.is_valid():  # is_valid 과정에서 clean메서드를 통해 사용자가 인증된다.
             form.login(request)  # form에 login 함수를 만들고 그걸 이용해서 login
-            return redirect('post_list')
+            return redirect('post:post_list')
     else:
         form = LoginForm()
     context = {
@@ -23,7 +23,7 @@ def login(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('post_list')
+    return redirect('post:post_list')
 
 
 def signup(request):
