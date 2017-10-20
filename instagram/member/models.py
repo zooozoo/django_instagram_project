@@ -4,9 +4,11 @@ from django.contrib.auth.models import (
     UserManager as DjangoUserManager
 )
 
+
 class UserManager(DjangoUserManager):
     def create_superuser(self, *args, **kwargs):
         super().create_superuser(age=30, *args, **kwargs)
+
 
 class User(AbstractUser):
     img_profile = models.ImageField(
@@ -15,6 +17,6 @@ class User(AbstractUser):
     )
     age = models.IntegerField()
 
-    onjects = UserManager()
+    objects = UserManager()
 
     # REQUIRED_FIELDS =  AbstractUser.REQUIRED_FIELDS + ['age']
