@@ -28,10 +28,10 @@ def logout_view(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = SignupForm(request.POST)
+        form = SignupForm(request.POST, request.files)
         if form.is_valid():
-            user = form.signup()
-            return HttpResponse(f'{user.username}, {user.password}')
+            form.save()
+            return redirect('post:post_list')
     else:
         form = SignupForm()
     context = {

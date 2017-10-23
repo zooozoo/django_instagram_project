@@ -1,10 +1,12 @@
 <div id="post-{{ post.pk }}" class="panel panel-default post">
     <div class="panel-heading">{{ post.author }}</div>
     <div>
-        <form action="{% url 'post:post_delete' post_pk=post.pk %}" method="POST">
-            {% csrf_token %}
-            <button>포스트 삭제</button>
-        </form>
+        {% if post.author == user %}
+            <form action="{% url 'post:post_delete' post_pk=post.pk %}" method="POST">
+                {% csrf_token %}
+                <button>포스트 삭제</button>
+            </form>
+        {% endif %}
     </div>
     <div class="panel-body">
         <a href="{% url 'post:post_detail' post_pk=post.pk %}">
