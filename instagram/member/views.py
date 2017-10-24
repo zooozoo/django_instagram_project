@@ -67,6 +67,12 @@ def facebook_login(request):
         type: str
         user_id: str
 
+    class UserInfo():
+        def __init__(self, data):
+            self.id = data['id']
+            self.email = data.get('email', '')
+            self.url_picture = data['picture']['data']['url']
+
     app_id = settings.FACEBOOK_APP_ID
     app_secret_code = settings.FACEBOOK_APP_SECRET_CODE
     app_access_token = f'{app_id}|{app_secret_code}'
@@ -114,5 +120,19 @@ def facebook_login(request):
     }
     response = requests.get(url_graph_user_info, params_graph_user_info)
     result = response.json()
+    user_info = UserInfo(data=result)
 
+    # 페이스북으로 가입한 유저의username
+    # fb_<facebook_user_id>
+    username = f'fb_{user_info.id}'
+    if User.objects.filter(username=username).exists():
+        user = User.objects.get(username=username)
+        django_login(request, user)
+    else:
+        user = User.objects.create_user(
+            user_type=User.USER_TYPE_FACEBOOK,
+            username=username,
+            age=0
+        )
+    django_login(request, user)
     return HttpResponse(result.items())
