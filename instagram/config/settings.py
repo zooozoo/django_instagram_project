@@ -36,6 +36,16 @@ config_secret_common = json.loads(config_secret_common_str)
 # 3
 SECRET_KEY = config_secret_common["django"]["secret_key"]
 
+# FACEBOOK
+FACEBOOK_APP_ID = config_secret_common['facebook']['app_id']
+FACEBOOK_APP_SECRET_CODE = config_secret_common['facebook']['secret_code']
+FACEBOOK_SCOPE = [
+    'user_friends',
+    'public_profile',
+    'email'
+]
+
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
