@@ -21,6 +21,18 @@ print('ROOT_DIR', ROOT_DIR)
 
 AUTH_USER_MODEL = 'member.User'
 
+AUTHENTICATION_BACKEND = [
+    'django.contrib.auth.backends.ModelBackend',
+    'member.backends.FacebookBackend',
+]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+    )
+}
+
 # instagram_project/ .config_secret/
 CONFIG_SECRET_DIR = os.path.join(ROOT_DIR, '.config_secret')
 
@@ -64,7 +76,10 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+]
 
 # Application definition
 
@@ -77,9 +92,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django_extensions',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'corsheaders',
 
-    'post',
     'member',
+    'post',
 ]
 
 MIDDLEWARE = [
@@ -90,7 +108,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3001',
+)
+
 
 ROOT_URLCONF = 'config.urls'
 

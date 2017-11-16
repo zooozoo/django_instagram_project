@@ -1,8 +1,6 @@
 from django.conf import settings
 from django.db import models
 
-from member.forms import User
-
 
 class Postmanager(models.Manager):
     def get_queryset(self):

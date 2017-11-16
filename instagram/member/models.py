@@ -3,13 +3,15 @@ from django.contrib.auth.models import (
     AbstractUser,
     UserManager as DjangoUserManager
 )
-from django.http import request
+from rest_framework.authtoken.models import Token
 
 
 class UserManager(DjangoUserManager):
     def create_superuser(self, *args, **kwargs):
         super().create_superuser(age=30, *args, **kwargs)
 
+    def create_facebook_user(selfself, facebook_user_id):
+        pass
 
 class User(AbstractUser):
     USER_TYPE_FACEBOOK = 'f'
@@ -30,6 +32,8 @@ class User(AbstractUser):
 
     like_posts = models.ManyToManyField(
         'post.Post',
+        related_name='like_users',
+        blank=True,
         verbose_name='좋아요 누른 포스트 목록'
     )
 
@@ -49,13 +53,15 @@ class User(AbstractUser):
         related_name='followers'
     )
 
-
-
     objects = UserManager()
 
     class Meta:
         verbose_name = '사용자'
         verbose_name_plural = f'{verbose_name} 목록'
+
+    @property
+    def token(self):
+        return Token.objects.get_or_create(user=self)[0].key
 
     def follow_toggle(self, user):
         if not isinstance(user, User):
