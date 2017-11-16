@@ -48,7 +48,8 @@ def signup(request):
     if request.method == 'POST':
         form = SignupForm(request.POST, request.files)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            django_login(request, user, backend='django.contrib.auth.backends.ModelBackends')
             return redirect('post:post_list')
     else:
         form = SignupForm()
