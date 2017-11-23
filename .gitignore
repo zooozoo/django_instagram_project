@@ -3,6 +3,10 @@
 # Custom
 .idea/
 .config_secret/
+.media/
+
+# Travis CI
+secrets.tar
 
 # Front code
 /front/
