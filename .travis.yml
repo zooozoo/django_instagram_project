@@ -1,9 +1,13 @@
 language: python
-python: -3.6
+python:
+- 3.6
 before_install:
 - openssl aes-256-cbc -K $encrypted_b80b5b01c5ce_key -iv $encrypted_b80b5b01c5ce_iv
   -in secrets.tar.enc -out secrets.tar -d
--tar xvf secrets.tar
-install: "-pip install -r requirements.txt"
-before_script: "-cd instagram"
-script: "-python manage.py test"
+- tar xvf secrets.tar
+install:
+- pip install -r requirements.txt
+before_script:
+- cd instagram
+script:
+- python manage.py test
