@@ -46,7 +46,7 @@ def logout_view(request):
 
 def signup(request):
     if request.method == 'POST':
-        form = SignupForm(request.POST, request.files)
+        form = SignupForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save()
             django_login(request, user, backend='django.contrib.auth.backends.ModelBackends')

@@ -4,6 +4,9 @@
 .idea/
 .config_secret/
 
+# Front code
+/front/
+
 ### Django ###
 *.log
 *.pot

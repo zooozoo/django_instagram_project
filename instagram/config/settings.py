@@ -58,14 +58,14 @@ FACEBOOK_SCOPE = [
 ]
 
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(ROOT_DIR, '.media')
 MEDIA_URL = '/media/'
 
-STATIC_DIR = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(ROOT_DIR, '.static_root')
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(ROOT_DIR, '.static_root')
 
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
@@ -78,6 +78,13 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 # SECURITY WARNING: keep the secret key used in production secret!
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
+# COOLSMS_API_KEY = config_secret_common['coolsms']['api_key']
+# COLLSMS_API_SECRET = config_secret_common['coolsms']['api_secret']
+# COOLSMS_SENDER = config_secret_common['coolsms']['snsder']
+
+
+
 DEBUG = True
 
 ALLOWED_HOSTS = [
@@ -120,6 +127,8 @@ MIDDLEWARE = [
 
 CORS_ORIGIN_WHITELIST = (
     'localhost:3001',
+    'front.localhost:8013',
+    'tjr.kr',
 )
 
 

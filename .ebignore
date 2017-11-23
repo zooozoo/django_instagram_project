@@ -205,3 +205,4 @@ venv.bak/
 
 # EB ignore original
 !.config_secret/
+!front/
